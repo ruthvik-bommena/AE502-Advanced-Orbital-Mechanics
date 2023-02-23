@@ -6,13 +6,17 @@ function Calculate_StateToElm
 %    Date:          10 February, 2023
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
 %    Description:   Function to calculate Orbital Elements from State Vectors 
-%    References:    Ch 3. Orbital Mechanics, 2013, J.E. Prussing and B.A. Conway
 
 constants; 
 
-r0 = [-6115.75 -6586.18 -58.65]; %km
-v0 = [4.42 -4.26 -1.08]; %km/s
+% Oumouamoua
+params = TransferCase(1); mu = params.mu; 
+R02 = params.R02; V02 = params.V02;
+[a_Om,e_Om,i_Om,alpha_Om,omega_Om,f_Om] = StateToElm(R02,V02,mu);
 
-[a,e,i,alpha,omega,f] = StateToElm(r0,v0,muE);
+% Borisov
+params = TransferCase(2); mu = params.mu; 
+R02 = params.R02; V02 = params.V02;
+[a_Bo,e_Bo,i_Bo,alpha_Bo,omega_Bo,f_Bo] = StateToElm(R02,V02,mu);
 
 end
