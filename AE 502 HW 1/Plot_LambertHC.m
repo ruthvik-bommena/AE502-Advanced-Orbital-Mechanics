@@ -12,19 +12,19 @@ clc;
 constants; 
 
 % Choose Transfer Parameters
-params = TransferCase(2);
+params = TransferCase(1);
 TU = params.TU; mu = params.mu; 
 R01 = params.R01; V01 = params.V01;
 R02 = params.R02; V02 = params.V02; 
 dT = params.dT; tf = params.tf; t0f = params.t0f;
 dvMaxRendz = params.dvMaxRendz; dvMaxFlyBy = params.dvMaxFlyBy; 
 
-% Choose transfer and mission type - Prograde or Retrograde & Rendezvous or Fly-By
+% Choose transfer type - Prograde or Retrograde
 transferType = 'Prograde';
-missionType = 'Rendezvous';
 
 % Initialize DV
-dv = zeros(length(tf),length(dT));
+dvRendz = zeros(length(tf),length(dT));
+dvFlyBy = zeros(length(tf),length(dT));
 
 % Calculate DV for various departure and arrival dates
 for ii = 1:length(dT)
@@ -47,40 +47,57 @@ for ii = 1:length(dT)
         dv2 = v2-V2;
 
         % Total DV
-        dv(jj,ii) = (norm(dv1)+norm(dv2))*AU/TU; %km/sec
-        
+        dvRendz(jj,ii) = (norm(dv1)+norm(dv2))*AU/TU; %km/sec
+        dvFlyBy(jj,ii) = norm(dv1)*AU/TU; %km/sec
+
         % Constraint DV values to less than mission requirements
-            if strcmp(missionType,'Rendezvous')
-                if dv(jj,ii) > dvMaxRendz
-                    dv(jj,ii) = NaN;
-                end
-            else
-                 if dv(jj,ii) > dvMaxFlyBy
-                    dv(jj,ii) = NaN;
-                 end
-            end
+        % Rendezvous
+        if dvRendz(jj,ii) > dvMaxRendz
+            dvRendz(jj,ii) = NaN;
+        end
+        % Fly-By
+        if dvFlyBy(jj,ii) > dvMaxFlyBy
+            dvFlyBy(jj,ii) = NaN;
+        end
 
     end
 
 end
 
 % Change text in the plot as needed
-
-% figure; hold on; grid on;
-% surf(dT*TU/86400,(tf-t0f)*TU/86400,dv, 'LineStyle','none')
-% xlabel('Departure (Days past January 1st, 2017)');
-% ylabel('Arrival (Days Past August 1st, 2017)');
-% colormap turbo; c = colorbar; yl = ylabel(c,'Total \DeltaV (km/s)');
-% set(yl,'Rotation',270); c.Label.Position(1) = 3.5;
-% title(['Oumouamoua ',transferType,' ', missionType, ' Pork Chop Plot'])
-
+% Oumouamoua transfer plots
 figure; hold on; grid on;
-surf(dT*TU/86400,(tf-t0f)*TU/86400,dv, 'LineStyle','none')
+surf(dT*TU/86400,(tf-t0f)*TU/86400,dvRendz, 'LineStyle','none')
 xlabel('Departure (Days past January 1st, 2017)');
-ylabel('Arrival (Days Past June 1st, 2019)');
+ylabel('Arrival (Days Past August 1st, 2017)');
 colormap turbo; c = colorbar; yl = ylabel(c,'Total \DeltaV (km/s)');
 set(yl,'Rotation',270); c.Label.Position(1) = 3.5;
-title(['Borisov ',transferType,' ', missionType, ' Pork Chop Plot'])
+title(['Oumouamoua ',transferType,' Rendezvous Pork Chop Plot'])
+
+figure; hold on; grid on;
+surf(dT*TU/86400,(tf-t0f)*TU/86400,dvFlyBy, 'LineStyle','none')
+xlabel('Departure (Days past January 1st, 2017)');
+ylabel('Arrival (Days Past August 1st, 2017)');
+colormap turbo; c = colorbar; yl = ylabel(c,'Total \DeltaV (km/s)');
+set(yl,'Rotation',270); c.Label.Position(1) = 3.5;
+title(['Oumouamoua ',transferType,' Fly-By Pork Chop Plot'])
+
+% % Borisov transfer plots
+% figure; hold on; grid on;
+% surf(dT*TU/86400,(tf-t0f)*TU/86400,dvRendz, 'LineStyle','none')
+% xlabel('Departure (Days past January 1st, 2017)');
+% ylabel('Arrival (Days Past June 1st, 2019)');
+% colormap turbo; c = colorbar; yl = ylabel(c,'Total \DeltaV (km/s)');
+% set(yl,'Rotation',270); c.Label.Position(1) = 3.5;
+% title(['Borisov ',transferType,' Rendezvous Pork Chop Plot'])
+% 
+% figure; hold on; grid on;
+% surf(dT*TU/86400,(tf-t0f)*TU/86400,dvFlyBy, 'LineStyle','none')
+% xlabel('Departure (Days past January 1st, 2017)');
+% ylabel('Arrival (Days Past June 1st, 2019)');
+% colormap turbo; c = colorbar; yl = ylabel(c,'Total \DeltaV (km/s)');
+% set(yl,'Rotation',270); c.Label.Position(1) = 3.5;
+% title(['Borisov ',transferType,' Fly-By Pork Chop Plot'])
 
 end
 
