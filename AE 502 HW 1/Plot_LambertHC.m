@@ -6,9 +6,7 @@ function Plot_LambertHC
 %    Date:          10 February, 2023
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
 %    Description:   Function to calculate delta V using Lambert's Equation
-%    References:    Ch 5. Orbital Mechanics for Engineering Students, 2013, Howard Curtis.
 
-clc;
 constants; 
 
 % Choose Transfer Parameters
@@ -66,6 +64,7 @@ end
 
 % Change text in the plot as needed
 % Oumouamoua transfer plots
+% Transfer Case 1
 figure; hold on; grid on;
 surf(dT*TU/86400,(tf-t0f)*TU/86400,dvRendz, 'LineStyle','none')
 xlabel('Departure (Days past January 1st, 2017)');
@@ -83,6 +82,7 @@ set(yl,'Rotation',270); c.Label.Position(1) = 3.5;
 title(['Oumouamoua ',transferType,' Fly-By Pork Chop Plot'])
 
 % % Borisov transfer plots
+% % Transfer Case 2
 % figure; hold on; grid on;
 % surf(dT*TU/86400,(tf-t0f)*TU/86400,dvRendz, 'LineStyle','none')
 % xlabel('Departure (Days past January 1st, 2017)');

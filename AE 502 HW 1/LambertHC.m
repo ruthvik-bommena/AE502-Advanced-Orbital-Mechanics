@@ -27,12 +27,7 @@ cross12 = cross(R1,R2);
         end
     end
 
-% Calculate minimum transfer time
-% c = sqrt(r1^2 + r2^2 - 2*r1*r2*cos(theta));
-% s = (r1 + r2 + c)/2;
-% tp = (sqrt(2)/(3*sqrt(mu))) * (s^(3/2)-(sign(sin(theta))*(s-c)^(3/2)));
-
-% Check if transfer is possible with given tof
+% Check if transfer time is negative
 if t<0
 
 V1 = NaN*ones(1,3);
