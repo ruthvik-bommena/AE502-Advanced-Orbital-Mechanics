@@ -1,4 +1,4 @@
-function [t,X] = J2PertubedEOM(R0,V0,Radius,mu,J2,tf)
+function [t,X] = J2PerturbedEOM(R0,V0,Radius,mu,J2,tf)
 %%  < File Description >
 %    Author:        Ruthvik Bommena
 %    File Name:     J2PerturbedEOM.m
