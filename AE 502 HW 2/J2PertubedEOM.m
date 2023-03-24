@@ -1,7 +1,7 @@
 function [t,X] = J2PertubedEOM(R0,V0,Radius,mu,J2,tf)
 %%  < File Description >
 %    Author:        Ruthvik Bommena
-%    File Name:     J2PertubedEOM.m
+%    File Name:     J2PerturbedEOM.m
 %    Compiler:      MATLAB R2022b
 %    Date:          08 March, 2023
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
