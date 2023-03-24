@@ -1,7 +1,7 @@
 function Plot_J2PerturbedOrbit
 %%  < File Description >
 %    Author:        Ruthvik Bommena
-%    File Name:     Plot_J2PertubedOrbit.m
+%    File Name:     Plot_J2PerturbedOrbit.m
 %    Compiler:      MATLAB R2022b
 %    Date:          08 March, 2023
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
@@ -31,7 +31,7 @@ J2 = 0.00108263;
 [R0,V0] = ElmToState(a,e,i,alpha,omega,M,muE);
 
 % J2 Pertubation
-[t,X] = J2PertubedEOM(R0,V0,RE,muE,J2,tf);
+[t,X] = J2PerturbedEOM(R0,V0,RE,muE,J2,tf);
 
 % Time Evolution of Orbital Elements
 a = zeros(1,length(X)); e = zeros(1,length(X));
