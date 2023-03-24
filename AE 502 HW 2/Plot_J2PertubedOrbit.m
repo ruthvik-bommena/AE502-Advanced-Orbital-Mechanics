@@ -1,4 +1,4 @@
-function Plot_J2PertubedOrbit
+function Plot_J2PerturbedOrbit
 %%  < File Description >
 %    Author:        Ruthvik Bommena
 %    File Name:     Plot_J2PertubedOrbit.m
