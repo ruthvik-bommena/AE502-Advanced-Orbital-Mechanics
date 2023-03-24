@@ -5,7 +5,7 @@ function Plot_J2PertubedOrbit
 %    Compiler:      MATLAB R2022b
 %    Date:          08 March, 2023
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
-%    Description:   Function to plot pertubed J2 orbit and time evolution of orbital elements
+%    Description:   Function to plot perturbed J2 orbit and time evolution of orbital elements
 
 close all; clc;
 
