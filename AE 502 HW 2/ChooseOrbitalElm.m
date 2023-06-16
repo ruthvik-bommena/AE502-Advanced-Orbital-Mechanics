@@ -7,7 +7,7 @@ function ChooseOrbitalElm
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
 %    Description:   Function to choose orbital elements for a set of constraints
 
-close all; clc;
+clear; close all; clc;
 
 constants;
 

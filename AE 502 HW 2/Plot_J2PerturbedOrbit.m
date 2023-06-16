@@ -7,7 +7,7 @@ function Plot_J2PerturbedOrbit
 %    Affiliation:   Department of Aerospace Engineering, University of Illinois Urbana-Champaign.
 %    Description:   Function to plot perturbed J2 orbit and time evolution of orbital elements
 
-close all; clc;
+clear; close all; clc;
 
 constants; 
 
